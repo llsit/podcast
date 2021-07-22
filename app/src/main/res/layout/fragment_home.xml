@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E6E6FA"
     tools:context=".presentation.home.HomeFragment">
 
     <com.llsit.podcastapp.view.HeaderView
@@ -22,6 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainHeader"
-        tools:itemCount="5"
+        tools:itemCount="1"
         tools:listitem="@layout/view_highlight_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

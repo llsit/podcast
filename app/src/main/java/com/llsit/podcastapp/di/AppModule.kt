@@ -1,4 +1,4 @@
-package com.example.podcastapp.di
+package com.llsit.podcastapp.di
 
 val appModule = listOf(
     mainModule

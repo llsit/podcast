@@ -1,4 +1,4 @@
-package com.example.podcastapp.presentation.home
+package com.llsit.podcastapp.presentation.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

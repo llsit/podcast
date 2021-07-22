@@ -1,11 +1,17 @@
-package com.example.podcastapp.di
+package com.llsit.podcastapp.di
 
-import com.example.podcastapp.presentation.home.HomeViewModel
+import com.llsit.podcastapp.presentation.home.HomeFragment
+import com.llsit.podcastapp.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val mainModule = module {
-    viewModel {
-        HomeViewModel()
+
+    scope<HomeFragment> {
+//        scoped<Router> { ReadMainRouter() }
+
+        viewModel {
+            HomeViewModel()
+        }
     }
 }
