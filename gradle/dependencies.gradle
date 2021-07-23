@@ -1,0 +1,521 @@
+def appcompatVersion = "1.2.0"
+def coroutinesVersion = "1.5.0"
+def chuckerVersion = "3.5.0"
+def koinVersion = "2.2.2"
+def kotlinVersion = "1.4.32"
+def lifecycleVersion = '2.1.0'
+def mockitoVersion = "3.8.0"
+def mockitoKotlinVersion = "2.2.0"
+def newRelicVersion = "5.28.1"
+def okHttpVersion = "4.9.1"
+def retrofitVersion = "2.9.0"
+def roomVersion = "2.2.5"
+def ekoMessagingSdkVersion = '4.8.0'
+def firebaseVersion = "28.0.1"
+def jUnit5Version = "5.7.1"
+def spekVersion = "2.0.15"
+def compileSdkVersion = 29
+def minSdkVersion = 21
+def targetSdkVersion = 29
+
+def dependencyGroup(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+def AndroidArchitecture = dependencyGroup {
+    api "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycleVersion"
+    api "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
+}
+
+def AndroidPaging = dependencyGroup {
+    api 'androidx.paging:paging-runtime-ktx:2.1.2'
+    api 'androidx.paging:paging-rxjava2-ktx:2.1.2'
+}
+
+def AndroidSupport = dependencyGroup {
+    api "com.google.android.material:material:1.2.0"
+    api "com.google.android:flexbox:2.0.1"
+    api "com.google.myanmartools:myanmar-tools:1.2.0"
+
+    api "androidx.multidex:multidex:2.0.1"
+    api "androidx.appcompat:appcompat:$appcompatVersion"
+    api "androidx.appcompat:appcompat-resources:$appcompatVersion"
+    api "androidx.cardview:cardview:1.0.0"
+    api "androidx.browser:browser:1.0.0"
+    api "androidx.palette:palette:1.0.0"
+    api "androidx.recyclerview:recyclerview:1.2.0"
+    api "androidx.legacy:legacy-support-v4:1.0.0"
+    api "androidx.mediarouter:mediarouter:1.1.0"
+    api "androidx.constraintlayout:constraintlayout:2.0.2"
+    api 'androidx.viewpager2:viewpager2:1.0.0'
+    api 'androidx.core:core-ktx:1.5.0'
+    api "androidx.fragment:fragment-ktx:1.3.4"
+}
+
+def Animation = dependencyGroup {
+    // Material Progress loading
+    api 'com.pnikosis:materialish-progress:1.7'
+
+    // Animation effect
+    api 'com.daimajia.easing:library:1.0.1@aar'
+    api 'com.daimajia.androidanimations:library:1.1.3@aar'
+    api 'com.nineoldandroids:library:2.4.0'
+}
+
+def ANRs = dependencyGroup {
+    // ANR-WatchDog for detects Android ANRs (Application Not Responding).
+    api 'com.github.anrwatchdog:anrwatchdog:1.4.0'
+}
+
+def AppsFlyer = dependencyGroup {
+    api 'com.appsflyer:af-android-sdk:6.2.3'
+    api 'com.android.installreferrer:installreferrer:2.2'
+}
+
+def AppStartUp = dependencyGroup {
+    api "androidx.startup:startup-runtime:1.0.0"
+}
+
+def Biometric = dependencyGroup {
+    implementation 'androidx.biometric:biometric:1.1.0'
+}
+
+def Chucker = dependencyGroup {
+    debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
+    qaImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+}
+
+def CropImage = dependencyGroup {
+    api 'com.isseiaoki:simplecropview:1.1.8'
+}
+
+def EkoSDK = dependencyGroup {
+    api "com.github.EkoCommunications.EkoMessagingSDKAndroid:eko-sdk:$ekoMessagingSdkVersion"
+}
+
+def EventBus = dependencyGroup {
+    api 'com.squareup:otto:1.3.8'
+}
+
+def Facebook = dependencyGroup {
+    implementation 'com.facebook.android:facebook-share:9.1.0'
+}
+
+def FacebookDebugger = dependencyGroup {
+    api 'com.facebook.stetho:stetho:1.4.2'
+    api 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+    api 'com.facebook.stetho:stetho-urlconnection:1.4.2'
+}
+
+def Firebase = dependencyGroup {
+    api platform("com.google.firebase:firebase-bom:$firebaseVersion")
+
+    // Workaround conflict with EKo
+    api ('com.google.firebase:firebase-iid:21.1.0')
+
+    api 'com.google.firebase:firebase-analytics-ktx'
+    api 'com.google.firebase:firebase-crashlytics-ktx'
+    api 'com.google.firebase:firebase-config-ktx'
+    api 'com.google.firebase:firebase-database-ktx'
+    api 'com.google.firebase:firebase-messaging-ktx'
+    api 'com.google.firebase:firebase-storage-ktx'
+    api 'com.google.firebase:firebase-auth-ktx'
+    api 'com.google.firebase:firebase-dynamic-links-ktx'
+    api 'com.google.firebase:firebase-firestore-ktx'
+    api 'com.google.firebase:firebase-perf'
+
+    //googleApi 'com.google.firebase:firebase-crashlytics-ndk'
+}
+
+def Glide = dependencyGroup {
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    api 'com.github.bumptech.glide:annotations:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    api 'jp.wasabeef:glide-transformations:4.3.0'
+}
+
+def Huawei = dependencyGroup {
+    api 'com.huawei.hms:hianalytics:5.2.0.301'
+    api 'com.huawei.hms:push:5.1.1.301'
+}
+
+def ImageUtil = dependencyGroup {
+    // ImageChooser
+    implementation 'com.kbeanie:image-chooser-library:1.6.0@aar'
+
+    // ImageView Scale
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.5.0'
+}
+
+def Koin = dependencyGroup {
+    api "org.koin:koin-core:$koinVersion"
+    api "org.koin:koin-android:$koinVersion"
+    api("org.koin:koin-androidx-viewmodel:$koinVersion") {
+        exclude group: 'androidx.activity', module: 'activity'
+    }
+}
+
+def Kotlin = dependencyGroup {
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+}
+
+def KotlinCoroutine = dependencyGroup {
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+}
+
+def Location = dependencyGroup {
+    implementation 'pl.charmas.android:android-reactive-location2:2.1@aar'
+}
+
+def Navigation = dependencyGroup {
+    api 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha01'
+    api 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha01'
+}
+
+def Chart = dependencyGroup {
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+}
+
+def PlayService = dependencyGroup {
+    api 'com.google.android.gms:play-services-auth:19.0.0'
+    api 'com.google.android.gms:play-services-identity:17.0.0'
+    api 'com.google.android.gms:play-services-gcm:17.0.0'
+    api 'com.google.android.gms:play-services-ads:20.1.0'
+    api 'com.google.android.gms:play-services-cast-framework:20.0.0'
+    api 'com.google.android.gms:play-services-maps:17.0.1'
+    api 'com.google.android.gms:play-services-location:18.0.0'
+    api 'com.google.android.gms:play-services-awareness:18.0.1'
+    api 'com.google.android.gms:play-services-analytics:17.0.0'
+    api('com.google.android.gms:play-services-tagmanager:17.0.0') {
+        exclude group: 'com.google.android.gms', module: 'play-services-basement'
+        exclude group: 'com.google.android.gms', module: 'play-services-measurement'
+        exclude group: 'com.google.android.gms', module: 'play-services-measurement-api'
+        exclude group: 'com.google.android.gms', module: 'play-services-measurement-impl'
+        exclude group: 'com.google.android.gms', module: 'play-services-measurement-sdk'
+    }
+
+    api 'com.google.android.play:core:1.10.0'
+    api 'com.google.android.play:core-ktx:1.8.1'
+}
+
+def Player = dependencyGroup {
+    api 'com.google.android.exoplayer:exoplayer:2.12.2'
+    api 'com.google.android.exoplayer:extension-ima:2.12.2'
+}
+
+def ReactiveX = dependencyGroup {
+    api 'io.reactivex.rxjava2:rxjava:2.1.5'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+}
+
+def Retrofit = dependencyGroup {
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    api 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    api('com.squareup.retrofit2:converter-simplexml:2.1.0') {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
+
+    api "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    testImplementation "com.squareup.okhttp3:okhttp-urlconnection:$okHttpVersion"
+}
+
+def Room = dependencyGroup {
+    api "androidx.room:room-runtime:$roomVersion"
+    api "androidx.room:room-ktx:$roomVersion"
+}
+
+def TrueSDK = dependencyGroup {
+    // TrueMoney SDK
+    devImplementation(name: 'tmn-sdk-stg-1.3.0', ext: 'aar')
+    preprodImplementation(name: 'tmn-sdk-stg-1.3.0', ext: 'aar')
+    prodImplementation(name: 'tmn-sdk-prod-1.3.0', ext: 'aar')
+}
+
+def TunedDependencies = dependencyGroup {
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.30.1'
+    kapt 'com.google.dagger:dagger-compiler:2.30.1'
+
+    // Encryption
+    implementation 'com.facebook.conceal:conceal:1.1.3@aar'
+
+    // Stetho
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+
+    // Anko
+    implementation 'org.jetbrains.anko:anko-sdk25:0.10.8',
+            'org.jetbrains.anko:anko-sdk25-coroutines:0.10.8',
+            'org.jetbrains.anko:anko-recyclerview-v7:0.10.8'
+
+    // Loading Indicator
+    implementation 'com.wang.avi:library:2.1.3'
+
+    // Circle Image View
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    // Discrete Scroll View
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.9'
+
+    // Swipe Layout
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+
+    // Gravity Snap Helper
+    implementation 'com.github.rubensousa:gravitysnaphelper:1.3'
+
+    // Infinite Pager Indicator
+    implementation 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.10'
+
+    // Segmented Control
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+}
+
+def Test = dependencyGroup {
+    // JUnit 5
+    api "org.junit.jupiter:junit-jupiter-api:$jUnit5Version"
+
+    // AndroidX
+    api 'androidx.arch.core:core-testing:2.1.0'
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    api 'com.jraska.livedata:testing:1.1.2'
+}
+
+def UnitTesting = dependencyGroup {
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:1.1.1"
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
+
+    // JUnit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jUnit5Version"
+    testImplementation "org.junit.platform:junit-platform-runner:1.7.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jUnit5Version"
+
+    androidTestImplementation "de.mannodermaus.junit5:android-test-core:1.0.0"
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:1.0.0"
+
+    // AndroidX
+    testImplementation 'androidx.test:core:1.3.0'
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation "androidx.room:room-testing:$roomVersion"
+
+    // Assertion
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+
+    // Mocking
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "io.mockk:mockk:1.10.6"
+
+    // Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+    // Koin
+    testImplementation "org.koin:koin-test:$koinVersion"
+
+    // Spek
+    testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spekVersion"
+    testImplementation "org.spekframework.spek2:spek-runner-junit5:$spekVersion"
+
+    // Kakao
+    androidTestImplementation 'com.agoda.kakao:kakao:2.4.0'
+
+    //json
+    testImplementation 'org.json:json:20180813'
+}
+
+def SkeletonLayout = dependencyGroup {
+    api 'com.faltenreich:skeletonlayout:2.0.2'
+}
+
+def TechnicalLogging = dependencyGroup {
+    api 'com.gu.android:toolargetool:0.3.0'
+
+    // New Relic
+    api "com.newrelic.agent.android:android-agent:$newRelicVersion"
+
+    huaweiApi 'com.huawei.agconnect:agconnect-crash:1.5.1.300'
+    huaweiApi 'com.huawei.agconnect:agconnect-apms:1.5.1.303'
+    //huaweiApi 'com.huawei.agconnect:agconnect-crash-native:1.4.2.301'
+    api 'com.jakewharton.timber:timber:4.7.1'
+}
+
+def Utilities = dependencyGroup {
+
+    // Parceler - Parcelable
+    implementation 'org.parceler:parceler-api:1.1.12'
+    kapt 'org.parceler:parceler:1.1.12'
+
+    // Barcode
+    implementation 'com.google.zxing:core:3.2.1'
+
+    // Map
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    // GeoHash
+    implementation group: 'ch.hsr', name: 'geohash', version: '1.0.13'
+}
+
+def View = dependencyGroup {
+    // Smart tab layout
+    implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+
+    // Floating action button
+    implementation 'com.github.clans:fab:1.6.4'
+
+    // Floating action button
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+
+    // RecyclerView animators
+    implementation 'jp.wasabeef:recyclerview-animators:2.2.3'
+
+    // Pager sliding tab
+    implementation 'com.jpardogo.materialtabstrip:library:1.1.0'
+
+    // View pager indicator
+    implementation 'com.githang:viewpagerindicator:2.4.2@aar'
+
+    // Material scrollbar
+    implementation 'com.github.turing-tech:MaterialScrollBar:13.3.2'
+
+    // Spinner datePicker
+    implementation 'com.github.drawers:SpinnerDatePicker:1.0.4'
+
+    // Switcher
+    implementation('com.github.jkwiecien:Switcher:2.0.6') {
+        exclude module: 'appcompat-v7'
+    }
+
+    // Material dialog
+    implementation('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-annotations'
+        transitive = false
+    }
+}
+
+def Watermark = dependencyGroup {
+    api(name: 'watermarking', ext: 'aar')
+}
+
+def WebKit = dependencyGroup {
+    // Webkit
+    implementation 'androidx.webkit:webkit:1.3.0'
+}
+
+def ZxingQR = dependencyGroup {
+    api 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
+    api 'com.google.zxing:core:3.3.3'
+}
+
+def BouncyCastle = dependencyGroup {
+    implementation 'org.bouncycastle:bcprov-jdk15:1.46'
+}
+
+def AndroidStateSafe = dependencyGroup {
+    //Bridge
+    api 'com.github.livefront:bridge:v1.3.1'
+
+    //Icepick
+    api 'frankiesardo:icepick:3.2.0'
+    compileOnly 'frankiesardo:icepick-processor:3.2.0'
+}
+
+def LeakCanary = dependencyGroup {
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+}
+
+ext.appcompatVersion = appcompatVersion
+ext.kotlinVersion = kotlinVersion
+ext.koinVersion = koinVersion
+ext.newRelicVersion = newRelicVersion
+ext.okHttpVersion = okHttpVersion
+ext.roomVersion = roomVersion
+
+ext.AndroidArchitecture = AndroidArchitecture
+ext.AndroidPaging = AndroidPaging
+ext.AndroidStateSafe = AndroidStateSafe
+ext.AndroidSupport = AndroidSupport
+ext.Animation = Animation
+ext.ANRs = ANRs
+ext.AppsFlyer = AppsFlyer
+ext.AppStartUp = AppStartUp
+ext.Biometric = Biometric
+ext.BouncyCastle = BouncyCastle
+ext.Chucker = Chucker
+ext.CropImage = CropImage
+ext.EkoSDK = EkoSDK
+ext.EventBus = EventBus
+ext.Facebook = Facebook
+ext.FacebookDebugger = FacebookDebugger
+ext.Firebase = Firebase
+ext.Glide = Glide
+ext.Huawei = Huawei
+ext.ImageUtil = ImageUtil
+ext.Koin = Koin
+ext.Kotlin = Kotlin
+ext.KotlinCoroutine = KotlinCoroutine
+ext.Location = Location
+ext.Navigation = Navigation
+ext.PlayService = PlayService
+ext.Player = Player
+ext.ReactiveX = ReactiveX
+ext.Retrofit = Retrofit
+ext.Room = Room
+ext.SkeletonLayout = SkeletonLayout
+ext.TechnicalLogging = TechnicalLogging
+ext.Test = Test
+ext.TrueSDK = TrueSDK
+ext.TunedDependencies = TunedDependencies
+ext.UnitTesting = UnitTesting
+ext.Utilities = Utilities
+ext.View = View
+ext.Watermark = Watermark
+ext.WebKit = WebKit
+ext.ZxingQR = ZxingQR
+ext.Chart = Chart
+ext.LeakCanary = LeakCanary
+
+ext.compileSdkVersion = compileSdkVersion
+ext.minSdkVersion = minSdkVersion
+ext.targetSdkVersion = targetSdkVersion

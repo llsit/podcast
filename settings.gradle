@@ -1,2 +1,3 @@
 rootProject.name = "PodcastApp"
 include ':app'
+include ':player'

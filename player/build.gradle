@@ -1,56 +1,15 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
 apply {
+    from("${rootDir}/gradle/sub-module.gradle")
     from("${rootDir}/gradle/dependencies.gradle")
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
-    defaultConfig {
-        minSdkVersion 26
-        targetSdkVersion 30
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    flavorDimensions "environment"
-    productFlavors {
-        staging {
-            dimension "environment"
-            applicationId "com.llsit.podcastapp.staging"
-            versionCode 1
-            versionName "1.0"
-        }
-
-        production {
-            dimension "environment"
-            applicationId "com.llsit.podcastapp"
-            versionCode 1
-            versionName "1.0"
-        }
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
@@ -72,5 +31,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation project(':player')
+//    implementation(':app')
 }

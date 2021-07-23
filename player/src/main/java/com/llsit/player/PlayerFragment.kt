@@ -1,4 +1,4 @@
-package com.llsit.podcastapp.presentation.player
+package com.llsit.player
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.llsit.podcastapp.R
 
 class PlayerFragment : Fragment() {
 
@@ -19,7 +18,7 @@ class PlayerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(R.layout.fragment_player, container, false)
     }
 

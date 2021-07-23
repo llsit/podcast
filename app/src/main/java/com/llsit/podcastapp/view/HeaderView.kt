@@ -23,5 +23,9 @@ class HeaderView : FrameLayout {
         addView(binding.root)
     }
 
-
+    fun setOnClick(block: () -> Unit) {
+        binding.avatarHeader.setOnClickListener {
+            block.invoke()
+        }
+    }
 }

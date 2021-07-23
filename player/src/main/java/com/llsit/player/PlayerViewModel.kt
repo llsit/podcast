@@ -1,4 +1,4 @@
-package com.llsit.podcastapp.presentation.player
+package com.llsit.player
 
 import androidx.lifecycle.ViewModel
 
